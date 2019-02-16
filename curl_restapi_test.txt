@@ -1,0 +1,19 @@
+Jobs
+----
+
+curl http://snivas.pythonanywhere.com/jobs
+curl http://snivas.pythonanywhere.com/jobs?status=open&q=test
+curl http://snivas.pythonanywhere.com/jobs?status=open
+
+Shorlisted
+----------
+
+curl http://snivas.pythonanywhere.com/jobs/<jobid>/shortlisted
+curl http://snivas.pythonanywhere.com/jobs/1/shortlisted
+
+
+Interviews
+----------
+
+curl http://snivas.pythonanywhere.com/jobs/<jobid>/interviews/<candidateid>
+curl http://snivas.pythonanywhere.com/jobs/1/interviews/1
