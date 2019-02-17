@@ -124,12 +124,12 @@ $(document).ready(function() {
 
     jobtable.on( 'draw', function () {
        $('#jobslist tbody tr:eq(0)').click();
-       $('#jobscnt').html(" ( " + jobtable.data().count() + " )");
+       $('#jobscnt').html("(" + jobtable.data().count() + ")");
     });
 
     shortlistedtable.on( 'draw', function () {
        $('#candidatelist tbody tr:eq(0)').click();
-       $('#candidatecnt').html(" ( " + shortlistedtable.data().count() + " )");
+       $('#candidatecnt').html("(" + shortlistedtable.data().count() + ")");
     });
 
     function resetTables() {

@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Simple Job Portal Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
  <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-
-<!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<!-- Popper JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="js/script.js"></script>
@@ -28,11 +22,10 @@
         }
 
         .search {
-            background-color: #81F79F;
+            background-color: #acbad4;
         }
 
         .container {
-          /* max-width: 960px; */
           height: auto !important;
 		  min-height: 100%;
 		  margin: 0 auto -30px;
@@ -45,7 +38,8 @@
            position:fixed;
            bottom:0;
            margin-top: 100px;
-           background:#81F79F;
+           background:#acbad4;
+           color: #fff;
         }
 
         .card-header {
@@ -65,6 +59,7 @@
 
         .form-inline label {
           margin: 5px 10px 5px 0;
+          color: #fff;
         }
 
         .form-inline input {
@@ -75,8 +70,10 @@
           border: 1px solid #ddd;
         }
 
+        .form-control:focus{border-color: #5cb85c;  box-shadow: none; -webkit-box-shadow: none;}
+
         .spcnt {
-            color: #FF8000;
+            color: #acbad4;
         }
 
   </style>
@@ -92,7 +89,7 @@
   <form id="frmSearch" class="form-inline center" action="/" method="GET">
 
   <div class="custom-control custom-radio">
-  <input type="radio" class="custom-control-input" id="status_all" name="status" value="all" checked>
+  <input type="radio" class="form-control custom-control-input" id="status_all" name="status" value="all" checked>
   <label class="custom-control-label" for="status_all">All</label>
   </div>
 
