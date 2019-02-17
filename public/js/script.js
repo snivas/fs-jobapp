@@ -1,4 +1,4 @@
-var STATUS = ["Open", "Closed"]
+var STATUS = ["Open", "Closed", "Unknown"]
 var INTERVIEW_STATUS = ["Scheduled", "Selected","Offered", "No Response", "Rejected"]
 var BASE_URL="http://snivas.pythonanywhere.com"
 
@@ -13,6 +13,7 @@ $(document).ready(function() {
                     "dataSrc": ""
                  },
         "columns": [
+                    { "defaultContent" : ""},
                     { "data": "company_name" },
                     { "data": "job_title" },
                     { "data": "posted_date", render: function (data, type, row) {
@@ -23,7 +24,12 @@ $(document).ready(function() {
                             return STATUS[data];
 
                     }}
-                   ]
+                   ],
+        "fnRowCallback" : function(nRow, aData, iDisplayIndex){
+            var oSettings = this.fnSettings ();
+            $("td:first", nRow).html(oSettings._iDisplayStart+iDisplayIndex +1);
+            return nRow;
+        },
     });
 
     var shortlistedtable = $('#candidatelist').DataTable( {
@@ -36,6 +42,7 @@ $(document).ready(function() {
                     "dataSrc": ""
                  },
         "columns": [
+                    { "defaultContent" : ""},
                     { "data": "candidate_name" },
                     { "data": "works_at" },
                     { "data": "experience", render: function (data, type, row) {
@@ -46,7 +53,12 @@ $(document).ready(function() {
                             return data;
 
                     }}
-                   ]
+                   ],
+        "fnRowCallback" : function(nRow, aData, iDisplayIndex){
+            var oSettings = this.fnSettings ();
+            $("td:first", nRow).html(oSettings._iDisplayStart+iDisplayIndex +1);
+            return nRow;
+        }
     });
 
     var interviewstable = $('#interviewslist').DataTable( {
@@ -75,14 +87,16 @@ $(document).ready(function() {
 
 
     $('#jobslist tbody').on('click', 'tr', function() {
-        var data = jobtable.row( this ).data();
-        shortlistedtable.ajax.url(BASE_URL + "/jobs/" + data['job_id'] + "/shortlisted").load();
 
         if ($(this).hasClass('selected')) {
             $(this).removeClass('selected');
         } else {
             jobtable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
+        }
+        rdata = jobtable.row( this ).data();
+        if (typeof rdata !== "undefined") {
+            shortlistedtable.ajax.url(BASE_URL + "/jobs/" + rdata['job_id'] + "/shortlisted").load();
         }
     });
 
@@ -94,30 +108,39 @@ $(document).ready(function() {
             shortlistedtable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }
+        interviewstable.clear().draw();
         var data = shortlistedtable.row( this ).data();
-        interviewstable.ajax.url(BASE_URL + "/jobs/" + data['job_id'] + "/interviews/" + data['candidate_id']).load();
+        if (typeof data !== "undefined") {
+            interviewstable.ajax.url(BASE_URL + "/jobs/" + data['job_id'] + "/interviews/" + data['candidate_id']).load();
+        }
     });
 
     $("#btnSearch").click(function(e){
            e.preventDefault();
-           //resetTables();
+           resetTables();
+           $("#panel").show();
            jobtable.ajax.url(BASE_URL + "/jobs?" + $("#frmSearch").serialize()).load();
     });
 
     jobtable.on( 'draw', function () {
        $('#jobslist tbody tr:eq(0)').click();
+       $('#jobscnt').html(" ( " + jobtable.data().count() + " )");
     });
 
     shortlistedtable.on( 'draw', function () {
        $('#candidatelist tbody tr:eq(0)').click();
+       $('#candidatecnt').html(" ( " + shortlistedtable.data().count() + " )");
     });
 
     function resetTables() {
         jobtable.clear().draw();
         shortlistedtable.clear().draw();
         interviewstable.clear().draw();
+        $('#jobscnt').html("");
+        $('#candidatecnt').html("");
     }
 
     resetTables();
+    $("#panel").hide();
 
 } );

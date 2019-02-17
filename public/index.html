@@ -20,61 +20,64 @@
 <script src="js/script.js"></script>
 
   <style>
-        html {
+        html, body  {
           font-size: 12px;
+          height:100%;
+          min-height: 100%;
+          background-color: #F2F2F2;
         }
 
         .search {
-            background-color: #CEF6E3;
+            background-color: #81F79F;
         }
 
         .container {
-          max-width: 960px;
+          /* max-width: 960px; */
+          height: auto !important;
+		  min-height: 100%;
+		  margin: 0 auto -30px;
         }
 
-        .pricing-header {
-          max-width: 700px;
-        }
-
-        .card-deck .card {
-          min-width: 220px;
+        footer {
+           height: 30px;
+           width: 100%;
+           text-align: center;
+           position:fixed;
+           bottom:0;
+           margin-top: 100px;
+           background:#81F79F;
         }
 
         .card-header {
             background: transparent;
         }
 
-.form-inline {
-  width:600px; margin:0 auto;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-}
+        .push {
+            height: 30px;
+        }
 
-.form-inline label {
-  margin: 5px 10px 5px 0;
-}
+        .form-inline {
+          margin:0 auto;
+          display: flex;
+          flex-flow: row wrap;
+          align-items: center;
+        }
 
-.form-inline input {
-  vertical-align: middle;
-  margin: 5px 10px 5px 0;
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-}
+        .form-inline label {
+          margin: 5px 10px 5px 0;
+        }
 
-.form-inline button {
-  padding: 10px 20px;
-  background-color: dodgerblue;
-  border: 1px solid #ddd;
-  color: white;
-  cursor: pointer;
-}
+        .form-inline input {
+          vertical-align: middle;
+          margin: 5px 10px 5px 0;
+          padding: 10px;
+          background-color: #fff;
+          border: 1px solid #ddd;
+        }
 
-.form-inline button:hover {
-  background-color: royalblue;
-}
-
+        .spcnt {
+            color: #FF8000;
+        }
 
   </style>
 </head>
@@ -82,43 +85,49 @@
 
 <div class="d-flex flex-column flex-md-row align-items-center p-3 bg-white border-bottom">
   <h4 class="my-0 mr-md-auto font-weight-normal">Company name</h4>
-  <a class="btn btn-outline-primary" href="#">Hi, User1</a>
+  <a class="btn btn-outline-primary" href="#">Consultant: Consultant1</a>
 </div>
 
 <div class="d-flex flex-column flex-md-row align-items-center border-bottom search">
   <form id="frmSearch" class="form-inline center" action="/" method="GET">
-  <div class="form-check">
-  <input class="form-check-input" type="radio" name="status" id="status_all" value="all" checked>
-  <label class="form-check-label" for="status_all">all</label>
+
+  <div class="custom-control custom-radio">
+  <input type="radio" class="custom-control-input" id="status_all" name="status" value="all" checked>
+  <label class="custom-control-label" for="status_all">All</label>
   </div>
-  <div class="form-check">
-  <input class="form-check-input" type="radio" name="status" id="status_open" value="open">
-  <label class="form-check-label" for="status_open">Open</label>
+
+  <div class="custom-control custom-radio">
+  <input type="radio" class="custom-control-input" id="status_open" name="status" value="open">
+  <label class="custom-control-label" for="status_open">Open</label>
   </div>
-  <div class="form-check">
-  <input class="form-check-input" type="radio" name="status" id="status_closed" value="closed">
-  <label class="form-check-label" for="status_closed">Closed</label>
+
+  <div class="custom-control custom-radio">
+  <input type="radio" class="custom-control-input" id="status_close" name="status" value="closed" checked>
+  <label class="custom-control-label" for="status_close">Closed</label>
   </div>
-  <div class="form-check">
-  <label class="form-check-label" for="txtsearch">Title</label>
-  <input type="text" name="q" id="txtSearch">
+
+  <div class="custom-control custom-text">
+  <input class="form-control" type="text" placeholder="Search by Job title" aria-label="Enter Job title" name="q" id="txtSearch" />
   </div>
-  <button id="btnSearch" class="btn btn-success">Search</button>
+
+  <button id="btnSearch" class="btn btn-secondary btn-rounded">Search</button>
   </form>
+
 </div>
 
-<div class="container">
+<div id="panel" class="container">
     <div class="row">
-    <div class="col-sm-12 mb-4 shadow-sm">
+    <div class="col-sm-12 mb-4 shadow-sm bg-white ">
       <div class="card-header">
-        <h5 class="header my-0 font-weight-normal">Posted Jobs</h5>
+        <h5 class="header my-0 font-weight-normal">Posted Jobs<span class="spcnt" id="jobscnt"></span></h5>
       </div>
       <div class="card-body">
         <table id="jobslist" class="display compact" style="width:100%">
         <thead>
             <tr>
+                <th>#</th>
                 <th>Company</th>
-                <th>Position</th>
+                <th>Job Title</th>
                 <th>Posted Date</th>
                 <th>Status</th>
             </tr>
@@ -129,14 +138,15 @@
     </div>
 
     <div class="row">
-    <div class="col-sm-6 mb-4 shadow-sm">
+    <div class="col-sm-6 mb-4 shadow-sm bg-white">
       <div class="card-header">
-        <h5 class="my-0 font-weight-normal">Shortlisted Candidates</h5>
+        <h5 class="my-0 font-weight-normal">Shortlisted Candidates<span class="spcnt" id="candidatecnt"></span></h5>
       </div>
       <div class="card-body">
         <table id="candidatelist" class="display compact" style="width:100%">
         <thead>
             <tr>
+                <th>#</th>
                 <th>Candidate</th>
                 <th>Company</th>
                 <th>Experience</th>
@@ -146,7 +156,7 @@
         </table>
       </div>
     </div>
-    <div class="col-sm-6 mb-4 shadow-sm">
+    <div class="col-sm-6 mb-4 shadow-sm bg-white">
       <div class="card-header">
         <h5 class="my-0 font-weight-normal">Interviews</h5>
       </div>
@@ -166,16 +176,17 @@
 
     </div>
 
+    <div class="push"></div>
+
   </div>
 
-  <footer class="pt-4 my-md-5 pt-md-5 border-top">
-    <div class="row">
-      <div class="col-12 col-md form-inline">
-        <small class="d-block mb-9 text-muted">Job Consultant</small>
+
+<footer>
+      <div class="col-12 col-md">
+        <b>Simple Job Consultant Portal</b>
       </div>
-    </div>
-  </footer>
-</div>
+</footer>
+
 
 </body>
 </html>
