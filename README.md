@@ -13,13 +13,7 @@ Deployed on pythonanywhere
 
 The front end GUI interacts with backend using REST APIs
 
-```mermaid
-sequenceDiagram
-GUI->> REST_SERVER: REST CALLS - /jobs
-REST_SERVER-->>MYSQL: Query database
-MYSQL-->>REST_SERVER: Query Response
-REST_SERVER-->>GUI: JSON data
-```
+![Diagram](https://github.com/snivas/fs-jobapp/raw/master/arch.png)
 
 ## Database Design
 
