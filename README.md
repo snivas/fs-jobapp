@@ -15,9 +15,13 @@ The front end GUI interacts with backend using REST APIs
 
 ![Diagram](https://github.com/snivas/fs-jobapp/raw/master/arch-diagram.png)
 
+
 ## Database Design
 
+The database.sql in the root directory could be used to create the database, tables and also dummy data.
+
 ![Diagram](https://github.com/snivas/fs-jobapp/raw/master/db.PNG)
+
 
 ## REST API cURL samples
 
