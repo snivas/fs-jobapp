@@ -22,15 +22,15 @@ The front end GUI interacts with backend using REST APIs
 ## REST API cURL samples
 
 #### Jobs - To fetch job details
-curl http://snivas.pythonanywhere.com/jobs
-curl http://snivas.pythonanywhere.com/jobs?status=open
-curl http://snivas.pythonanywhere.com/jobs?status=open&q=test
+    $ curl http://snivas.pythonanywhere.com/jobs
+    $ curl http://snivas.pythonanywhere.com/jobs?status=open
+    $ curl http://snivas.pythonanywhere.com/jobs?status=open&q=test
 
 #### Shortlisted - To fetch Shortlisted applications
-curl http://snivas.pythonanywhere.com/jobs/#jobid/shortlisted
-curl http://snivas.pythonanywhere.com/jobs/1/shortlisted
+    $ curl http://snivas.pythonanywhere.com/jobs/#jobid/shortlisted
+    $ curl http://snivas.pythonanywhere.com/jobs/1/shortlisted
 
 #### Interviews - To fetch scheduled interviews for the applicant
-curl http://snivas.pythonanywhere.com/jobs/#jobid/interviews/#candidateid
-curl http://snivas.pythonanywhere.com/jobs/1/interviews/1
+    $ curl http://snivas.pythonanywhere.com/jobs/#jobid/interviews/#candidateid
+    $ curl http://snivas.pythonanywhere.com/jobs/1/interviews/1
 
