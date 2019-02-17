@@ -13,7 +13,7 @@ Deployed on pythonanywhere
 
 The front end GUI interacts with backend using REST APIs
 
-![Diagram](https://github.com/snivas/fs-jobapp/raw/master/arch.png)
+![Diagram](https://github.com/snivas/fs-jobapp/raw/master/arch-diagram.png)
 
 ## Database Design
 
