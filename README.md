@@ -2,9 +2,9 @@
 
 ## Technologies Used
 
-* GUI - HTML5, BootStrap, jQuery, datatable
-* Server - Python 3.7 (Bottle framework)
-* Database - MySQL
+* **GUI** - HTML5, BootStrap, jQuery, datatable
+* **Server** - Python 3.7 (Bottle framework)
+* **Database** - MySQL
 
 Demo: http://snivas.pythonanywhere.com/ui/index.html
 Deployed on pythonanywhere
@@ -18,7 +18,7 @@ The front end GUI interacts with backend using REST APIs
 
 ## Database Design
 
-The database.sql in the root directory could be used to create the database, tables and also dummy data.
+The **database.sql** in the root directory could be used to create the database, tables and also dummy data.
 
 ![Diagram](https://github.com/snivas/fs-jobapp/raw/master/db.PNG)
 
