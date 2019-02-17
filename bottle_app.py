@@ -41,8 +41,8 @@ def fetch_interviews(db, jobid, candid):
     return impl.query_interviews(db, jobid, candid);
 
 application = default_app()
-plugin = bottle_mysql.Plugin(dbhost='snivas.mysql.pythonanywhere-services.com',
-                             dbuser='snivas',
-                             dbpass='sample123',
-                             dbname='snivas$jobconsultant')
+plugin = bottle_mysql.Plugin(dbhost='xxxxxxxxx',
+                             dbuser='xxxx',
+                             dbpass='xxxx',
+                             dbname='xxxx')
 application.install(plugin)
